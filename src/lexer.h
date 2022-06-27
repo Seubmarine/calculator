@@ -4,7 +4,7 @@
 # include <string.h>
 # include <ctype.h>
 
-enum OP_TYPE
+enum op_type
 {
 	OP_PLUS,
 	OP_MINUS,
@@ -14,6 +14,8 @@ enum OP_TYPE
 	OP_UNKNOWN,
 	OP_ENUM_LEN,
 };
+
+extern char *OP_TYPE_ENUM_NAME[OP_ENUM_LEN];
 
 enum token_type
 {
@@ -36,7 +38,7 @@ typedef struct Token
 		int number;
 		float fnumber;
 		char *var;
-		enum OP_TYPE operation;
+		enum op_type operation;
 	};
 } Token;
 

@@ -9,6 +9,15 @@ char *TOKEN_ENUM_NAME[TOKEN_ENUM_LEN] = {
 	"TOKEN_UNKNOWN",
 };
 
+char *OP_TYPE_ENUM_NAME[OP_ENUM_LEN] = {
+	"OP_PLUS",
+	"OP_MINUS",
+	"OP_MUL",
+	"OP_DIV",
+	"OP_POWER",
+	"OP_UNKNOWN",
+};
+
 Lexer lexer(char *str)
 {
 	Lexer lexing = {.token_len = 0, .tokens = NULL};

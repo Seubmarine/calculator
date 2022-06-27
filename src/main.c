@@ -27,15 +27,20 @@ int main(int argc, char const *argv[])
 	}
 	char *str = get_total_string(argc - 1, argv + 1);
 	printf("%s\n", str);
-	printf("%lu\n", sizeof(Token));
+	// printf("%lu\n", sizeof(Token));
 	Lexer lexing = lexer(str);
 	for (size_t i = 0; i < lexing.token_len; i++)
 	{
-		char *token_name = TOKEN_ENUM_NAME[lexing.tokens[i].type];
+		Token current_token = lexing.tokens[i];
+		char *token_name;
+		if (current_token.type == TOKEN_OP)
+			token_name = OP_TYPE_ENUM_NAME[current_token.operation];
+		else
+			token_name = TOKEN_ENUM_NAME[current_token.type];
 		printf("%s ", token_name);
 	}
 	printf("\n");
-	
+
 	free(str);
 	return (0);
 }
