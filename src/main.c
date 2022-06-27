@@ -31,13 +31,24 @@ int main(int argc, char const *argv[])
 	Lexer lexing = lexer(str);
 	for (size_t i = 0; i < lexing.token_len; i++)
 	{
-		Token current_token = lexing.tokens[i];
-		char *token_name;
-		if (current_token.type == TOKEN_OP)
-			token_name = OP_TYPE_ENUM_NAME[current_token.operation];
-		else
-			token_name = TOKEN_ENUM_NAME[current_token.type];
-		printf("%s ", token_name);
+		Token current_token = lexing.tokens[i];	
+		
+		switch (current_token.type)
+		{
+		case TOKEN_VAR:
+			printf("%s(%s)", TOKEN_ENUM_NAME[current_token.type], current_token.var);
+			break;
+		case TOKEN_INT:
+			printf("%s(%i)", TOKEN_ENUM_NAME[current_token.type], current_token.number);
+			break;
+		case TOKEN_OP:
+			printf("%s", OP_TYPE_ENUM_NAME[current_token.operation]);
+			break;
+		default:
+			printf("%s",TOKEN_ENUM_NAME[current_token.type]);
+			break;
+		}
+		printf(" ");
 	}
 	printf("\n");
 	lexer_free(&lexing);
