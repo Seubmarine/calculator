@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
 		printf("%s ", token_name);
 	}
 	printf("\n");
-
+	lexer_free(&lexing);
 	free(str);
 	return (0);
 }

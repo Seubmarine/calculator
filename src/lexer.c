@@ -87,6 +87,17 @@ void lexer_free(Lexer *lexing)
 {
 	for (size_t i = 0; i < lexing->token_len; i++)
 	{
-		free(lexing->tokens + i);
+		Token current_token = lexing->tokens[i];
+		switch (current_token.type)
+		{
+		case TOKEN_VAR:
+			free(current_token.var);
+			break;
+		default:
+			break;
+		}
 	}
+	free(lexing->tokens);
+	lexing->tokens = NULL;
+	lexing->token_len = 0;
 }
