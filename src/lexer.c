@@ -4,7 +4,8 @@ char *TOKEN_ENUM_NAME[TOKEN_ENUM_LEN] = {
 	"TOKEN_INT",
 	"TOKEN_FLOAT",
 	"TOKEN_OP",
-	"TOKEN_PARENTHESE",
+	"TOKEN_PARENTHESE_OPEN",
+	"TOKEN_PARENTHESE_CLOSE",
 	"TOKEN_VAR",
 	"TOKEN_UNKNOWN",
 };
@@ -68,6 +69,12 @@ Lexer lexer(char *str)
 				break;
 			case '^':
 				token = (Token){.type = TOKEN_OP, .operation = OP_POWER};
+				break;
+			case '(':
+				token = (Token){.type = TOKEN_PARENTHESE_OPEN};
+				break;
+			case ')':
+				token = (Token){.type = TOKEN_PARENTHESE_CLOSE};
 				break;
 			default:
 				token = (Token){.type = TOKEN_UNKNOWN};
